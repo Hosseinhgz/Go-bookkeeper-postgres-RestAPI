@@ -88,6 +88,6 @@ func main() {
 
 	// API routers
 	router := mux.NewRouter()
-	router.HandleFunc("/people", getPeople).Methods("GET")
+	router.HandleFunc("/persons", getPersons).Methods("GET")
 
 }
