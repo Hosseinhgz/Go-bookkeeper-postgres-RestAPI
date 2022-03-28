@@ -6,5 +6,5 @@ import (
 )
 
 var RegisterBookKeeperRoutes = func(router *mux.Router) {
-	router.HandleFunc("/persons/", controllers.GetPersons).Methods("GET")
+	router.HandleFunc("/persons", controllers.GetPersons).Methods("GET")
 }
