@@ -3,36 +3,25 @@ package main
 import (
 	"fmt"
 	"log"
-
+	"net/http"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+
+	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/models"
+	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/routes"
+
 )
 
-type Person struct {
-	// next line is create unique id, date created and date updated and date deleted
-	gorm.Model
-	Name  string
-	Email string `gorm:"typevarchar(100);unique_index"` // with help of gorm we make email a unique value
-	Book  []Book
-}
 
-type Book struct {
-	gorm.Model
 
-	Title      string
-	Author     string
-	CallNumber int
-	PersonID   int // use name of the struct that you want make relationship
-
-}
 
 var (
-	persons = []Person{
+	persons = []models.Person{
 		{Name: "Hossein", Email: "hossein@gmail.com"},
 		{Name: "Lia", Email: "lia1989@gmail.com"},
 	}
-	books = []Book{
+	books = []models.Book{
 		{Title: "Lord of Glory", Author: "Benjamin B. Warfield", CallNumber: 238268289, PersonID: 1},
 		{Title: "The Lord of Death and the Queen of Life", Author: "Homer Eon Flint", CallNumber: 234568288, PersonID: 1},
 		{Title: "The Best Horror of the Year: Volume 1", Author: "Ellen Datlow", CallNumber: 762365490, PersonID: 2},
@@ -73,8 +62,8 @@ func main() {
 	defer db.Close()
 
 	// Make migrations to database if they have not already created
-	db.AutoMigrate(&Person{})
-	db.AutoMigrate(&Book{})
+	db.AutoMigrate(&models.Person{})
+	db.AutoMigrate(&models.Book{})
 
 	// // creating some dummy data for testing connection with db
 	// for idx := range persons {
@@ -86,8 +75,9 @@ func main() {
 	// }
 
 
-	// API routers
-	router := mux.NewRouter()
-	router.HandleFunc("/persons", getPersons).Methods("GET")
+	r := mux.NewRouter()
+	routes.RegisterBookKeeperRoutes(r)
+	http.Handle("/", r)
+	log.Fatal(http.ListenAndServe("localhost:9010", r))
 
 }
