@@ -6,6 +6,7 @@ import (
 
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/config"
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/models"
+	"github.com/gorilla/mux"
 )
 
 func GetPersons(w http.ResponseWriter, r *http.Request) {
@@ -14,6 +15,57 @@ func GetPersons(w http.ResponseWriter, r *http.Request) {
 	db.Find(&persons)
 	json.NewEncoder(w).Encode(&persons)
 }
+
+func GetBooks(w http.ResponseWriter, r *http.Request) {
+	var books []models.Book
+	db := config.GetDB()
+	db.Find(&books)
+	json.NewEncoder(w).Encode(&books)
+}
+
+func GetPerson(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	db := config.GetDB()
+
+	var person models.Person
+	var books []models.Book
+	db.First(&person, params["id"])
+	db.Model(&person).Related(&books) // get all the books which is related to that person
+
+	person.Books = books
+	json.NewEncoder(w).Encode(person)
+}
+func GetBook(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	db := config.GetDB()
+
+	var book models.Book
+	db.First(&book, params["id"])
+	json.NewEncoder(w).Encode(book)
+}
+
+func CreatePerson(w http.ResponseWriter, r *http.Request) {
+	var person models.Person
+	db := config.GetDB()
+	json.NewDecoder(r.Body).Decode(&person)
+	createdPerson := db.Create(&person)
+	err := createdPerson.Error
+	if err !=nil {
+		json.NewEncoder(w).Encode(err)
+	} else {
+		json.NewEncoder(w).Encode(createdPerson)
+	}
+}
+
+func DeletePerson(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	db := config.GetDB()
+
+	var person models.Person
+	db.Delete(&person, params["id"])
+	json.NewEncoder(w).Encode(person)
+}
+
 
 //*********FROM PREVIOUS APP**************************************************START
 // var NewBook models.Book

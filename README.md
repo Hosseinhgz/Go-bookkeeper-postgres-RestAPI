@@ -10,9 +10,9 @@ sudo service postgresql start
 // go inside postgres shell
 sudo -u postgres psql
 // change the "postgres" user password
-ALTER USER postgres PASSWORD 'Hh4497'
-// create database called book_store
-CREATE DATABASE book_store
+ALTER USER postgres PASSWORD 'Hhh44974497'
+// create database called book_keeper
+CREATE DATABASE book_keeper
 // go out of postgres shell
 \q
 
@@ -27,3 +27,7 @@ go get "github.com/jinzhu/gorm/dialects/postgres"
 
 // Gorilla
 go get "github.com/gorilla/mux"
+
+# App details
+Thsi rest API is listenning on port localhost:9010
+You should have user and database created and ready in Postgres
