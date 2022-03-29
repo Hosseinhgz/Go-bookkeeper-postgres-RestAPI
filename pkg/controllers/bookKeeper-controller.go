@@ -56,6 +56,18 @@ func CreatePerson(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(createdPerson)
 	}
 }
+func CreateBook(w http.ResponseWriter, r *http.Request) {
+	var book models.Book
+	db := config.GetDB()
+	json.NewDecoder(r.Body).Decode(&book)
+	createdBook := db.Create(&book)
+	err := createdBook.Error
+	if err !=nil {
+		json.NewEncoder(w).Encode(err)
+	} else {
+		json.NewEncoder(w).Encode(createdBook)
+	}
+}
 
 func DeletePerson(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
@@ -65,7 +77,14 @@ func DeletePerson(w http.ResponseWriter, r *http.Request) {
 	db.Delete(&person, params["id"])
 	json.NewEncoder(w).Encode(person)
 }
+func DeleteBook(w http.ResponseWriter, r *http.Request) {
+	params := mux.Vars(r)
+	db := config.GetDB()
 
+	var book models.Book
+	db.Delete(&book, params["id"])
+	json.NewEncoder(w).Encode(book)
+}
 
 //*********FROM PREVIOUS APP**************************************************START
 // var NewBook models.Book
