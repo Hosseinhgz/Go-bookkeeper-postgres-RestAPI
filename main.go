@@ -32,7 +32,7 @@ func main() {
 
 	// deployed version on Heroku
 	// port := ":" + os.Getenv("PORT")
-	port := "https://banana-pie-05266.herokuapp.com"
+	port := "https://bookkeeper-postgres-go.herokuapp.com"
 	log.Println("Listening on:" + port)
 	log.Fatal(http.ListenAndServe(":"+port, r))
 
