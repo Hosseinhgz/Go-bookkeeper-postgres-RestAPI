@@ -1,5 +1,10 @@
 # Go-bookkeeper-postgres-RestAPI
-Commands to install postgres:
+This app is a simple book keeping application rest api that you can connect it with your Front end
+This app is writen with Go.
+The branch main is local version and the the branch Heroku-deployed-v1.0 is a deployed version
+
+
+## Commands to install postgres:
 Linux/WSL:
 sudo apt update
 sudo apt install postgresql postgresql-contrib
@@ -28,6 +33,6 @@ go get "github.com/jinzhu/gorm/dialects/postgres"
 // Gorilla
 go get "github.com/gorilla/mux"
 
-# App details
+## App details
 Thsi rest API is listenning on port localhost:9010
 You should have user and database created and ready in Postgres
