@@ -24,11 +24,11 @@ func GetDB() *gorm.DB {
 
 	// deployed version Heroku
 	dialect := "postgres"
-	host := "ec2-99-80-170-190.eu-west-1.compute.amazonaws.com"
+	host := "ec2-52-30-67-143.eu-west-1.compute.amazonaws.com"
 	dbPort := "5432"
-	user := "arfijkzivxdicj"
-	dbName := "dfki72t99bpp2i"
-	password := "f2a30019890da78a4fd8fc8a121878fb8685084a27ad0b0337d4a90c698e822f"
+	user := "fepuzbklejrydh"
+	dbName := "d1a6j2p9b55cbk"
+	password := "2b5141aad07ec369afa35e1e173ab964529665dab2b4f31afb2e10a2ea593c5f"
 
 	// Database connection string
 	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s password=%s port=%s", host, user, dbName, password, dbPort)

@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/mux"
-
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/models"
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/routes"
 
@@ -32,6 +31,13 @@ func main() {
 	r := mux.NewRouter()
 	routes.RegisterBookKeeperRoutes(r)
 	http.Handle("/", r)
+
+
+	//local version
 	log.Fatal(http.ListenAndServe("localhost:9010", r))
+
+	// // deployed version on Heroku
+	// port := ":" + os.Getenv("PORT")
+	// log.Fatal(http.ListenAndServe(port, r))
 
 }
