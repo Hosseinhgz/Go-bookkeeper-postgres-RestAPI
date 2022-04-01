@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/models"
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/routes"
@@ -31,8 +32,7 @@ func main() {
 	// log.Fatal(http.ListenAndServe("localhost:9010", r))
 
 	// deployed version on Heroku
-	// port := ":" + os.Getenv("PORT")
-	port := "https://bookkeeper-postgres-go.herokuapp.com"
+	port := ":" + os.Getenv("PORT")
 	log.Println("Listening on:" + port)
 	log.Fatal(http.ListenAndServe(":"+port, r))
 
