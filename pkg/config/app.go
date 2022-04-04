@@ -18,10 +18,10 @@ var err error
 func GetDB() *gorm.DB {
 	envErr := godotenv.Load()
 	if envErr != nil {
-		fmt.Printf("Could not load the .env file")
+		fmt.Println("Could not load the .env file")
 		os.Exit(1)
 	} else {
-		fmt.Printf(".env file is succesfully loaded")
+		fmt.Println(".env file is succesfully loaded")
 	}
 
 	dialect := os.Getenv("DIALECT")
@@ -32,7 +32,7 @@ func GetDB() *gorm.DB {
 	password := os.Getenv("PASS")
 
 	// Database connection string
-	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s password=%s port=%s", host, user, dbName, password, dbPort)
+	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s password=%s port=%s sslmode=disable", host, user, dbName, password, dbPort)
 
 	// Openning connection with database
 	db, err = gorm.Open(dialect, dbURI)
