@@ -3,10 +3,11 @@ package config
 import (
 	"fmt"
 	"log"
-	"os"
+
+	//"os"
 
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/models"
-	"github.com/joho/godotenv"
+	//"github.com/joho/godotenv"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -17,13 +18,13 @@ var err error
 
 func GetDB() *gorm.DB {
 
-	envErr := godotenv.Load()
-	if envErr != nil {
-		fmt.Println("Could not load the .env file")
-		os.Exit(1)
-	} else {
-		fmt.Println(".env file is succesfully loaded")
-	}
+	// envErr := godotenv.Load()
+	// if envErr != nil {
+	// 	fmt.Println("Could not load the .env file")
+	// 	os.Exit(1)
+	// } else {
+	// 	fmt.Println(".env file is succesfully loaded")
+	// }
 
 	// dialect := os.Getenv("DIALECT")
 	// host := os.Getenv("HOST")
