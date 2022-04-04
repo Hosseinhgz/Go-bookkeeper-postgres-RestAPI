@@ -16,6 +16,7 @@ var db *gorm.DB
 var err error
 
 func GetDB() *gorm.DB {
+
 	envErr := godotenv.Load()
 	if envErr != nil {
 		fmt.Println("Could not load the .env file")
