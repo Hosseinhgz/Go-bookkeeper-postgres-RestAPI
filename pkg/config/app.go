@@ -17,8 +17,14 @@ var err error
 
 func GetDB() *gorm.DB {
 
-	
-	// deployed version Heroku
+	envErr := godotenv.Load()
+	if envErr != nil {
+		fmt.Println("Could not load the .env file")
+		os.Exit(1)
+	} else {
+		fmt.Println(".env file is succesfully loaded")
+	}
+
 	dialect := os.Getenv("DIALECT")
 	host := os.Getenv("HOST")
 	dbPort := os.Getenv("DB_PORT")
