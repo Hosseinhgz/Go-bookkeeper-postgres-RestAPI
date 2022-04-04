@@ -1,7 +1,7 @@
 # Go-bookkeeper-postgres-RestAPI
 This app is a simple book keeping application rest api that you can connect it with your Front end
 This app is writen with Go.
-The branch main is local version and the the branch Heroku-deployed-v1.0 is a deployed version
+The branch main is deployed version
 ## Test
 this app is up and running on Heroku:
 https://bookkeeper-postgres-go.herokuapp.com/
@@ -18,13 +18,14 @@ example body JSON for this request :
 {
 	"Title":"The Best Horror of the Year",
 	"Author":"Ellen Datlow",
-	"CallNumber":762365222
+	"CallNumber":762235222
 }
 and more
 
 
 ## Installation and Commands
 Commands to install postgres:
+
 Linux/WSL:
 sudo apt update
 sudo apt install postgresql postgresql-contrib
@@ -53,6 +54,6 @@ go get "github.com/jinzhu/gorm/dialects/postgres"
 // Gorilla
 go get "github.com/gorilla/mux"
 
-# App details
+## App details
 Thsi rest API is listenning on port localhost:9010
 You should have user and database created and ready in Postgres
