@@ -9,5 +9,6 @@ require (
 
 require (
 	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/joho/godotenv v1.4.0
 	github.com/lib/pq v1.1.1 // indirect
 )
