@@ -39,7 +39,7 @@ func GetDB() *gorm.DB {
 	password := "2b5141aad07ec369afa35e1e173ab964529665dab2b4f31afb2e10a2ea593c5f"
 
 	// Database connection string
-	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s password=%s port=%s", host, user, dbName, password, dbPort)
+	dbURI := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s port=%s", host, user, dbName, password, dbPort)
 
 	// Openning connection with database
 	db, err = gorm.Open(dialect, dbURI)
