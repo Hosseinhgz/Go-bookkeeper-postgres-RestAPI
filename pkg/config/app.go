@@ -3,8 +3,10 @@ package config
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/models"
+	"github.com/joho/godotenv"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -14,16 +16,16 @@ var db *gorm.DB
 var err error
 
 func GetDB() *gorm.DB {
-	// local version
-	// dialect := "postgres"
-	// host := "localhost"
-	// dbPort := "5432"
-	// user := "postgres"
-	// dbName := "book_keeper"
-	// password := ""
+	envErr := godotenv.Load("../../.env")
+	if envErr != nil {
+		fmt.Printf("Could not load the .env file")
+		os.Exit(1)
+	}else{
+		fmt.Printf(".env file is succesfully loaded")
+	}
+	dialect := os.Getenv("DIALECT")
 
 	// deployed version Heroku
-	dialect := "postgres"
 	host := "ec2-52-30-67-143.eu-west-1.compute.amazonaws.com"
 	dbPort := "5432"
 	user := "fepuzbklejrydh"
