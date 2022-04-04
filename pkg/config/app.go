@@ -16,7 +16,7 @@ var db *gorm.DB
 var err error
 
 func GetDB() *gorm.DB {
-	envErr := godotenv.Load("github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/.env")
+	envErr := godotenv.Load()
 	if envErr != nil {
 		fmt.Printf("Could not load the .env file")
 		os.Exit(1)
