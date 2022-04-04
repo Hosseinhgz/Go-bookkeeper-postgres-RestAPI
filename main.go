@@ -1,16 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
-	"github.com/gorilla/mux"
+	"os"
+
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/models"
 	"github.com/Hosseinhgz/Go-bookkeeper-postgres-RestAPI/pkg/routes"
-
+	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 )
-
-
-
 
 var (
 	persons = []models.Person{
@@ -25,13 +25,16 @@ var (
 	}
 )
 
-
-
 func main() {
 	r := mux.NewRouter()
 	routes.RegisterBookKeeperRoutes(r)
 	http.Handle("/", r)
 
+	envErr := godotenv.Load(".env")
+	if envErr != nil {
+		fmt.Printf("Could not load the .env file")
+		os.Exit(1)
+	}
 
 	//local version
 	log.Fatal(http.ListenAndServe("localhost:9010", r))
